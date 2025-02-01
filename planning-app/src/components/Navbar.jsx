@@ -1,25 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiSearch } from "react-icons/fi"; 
-import { HiMenu } from "react-icons/hi"; 
-import { IoMdClose } from "react-icons/io"; 
+import { FiSearch } from "react-icons/fi";
+import { HiMenu } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  
+  const searchRef = useRef(null);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleSearch = () => setSearchOpen(!searchOpen);
+  const closeMenu = () => setMenuOpen(false);
 
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="bg-gradient-to-r from-[#008080] to-[#F5F5F5] p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         
+
         <button 
           className="block md:hidden text-black text-3xl" 
           onClick={toggleMenu}
@@ -33,7 +44,7 @@ const Navbar = () => {
             <Link to="/" className="text-black hover:underline mb-2" onClick={closeMenu}>
               Content Strategy
             </Link>
-            <Link to="/campaign-planning" className="text-black hover:underline mb-2" onClick={closeMenu}>
+            <Link to="/campaing-planning" className="text-black hover:underline mb-2" onClick={closeMenu}>
               Campaign Planning
             </Link>
             <Link to="/seo-optimization" className="text-black hover:underline mb-2" onClick={closeMenu}>
@@ -47,7 +58,7 @@ const Navbar = () => {
           <Link to="/" className="text-black hover:underline">
             Content Strategy
           </Link>
-          <Link to="/campaign-planning" className="text-black hover:underline">
+          <Link to="/campaing-planning" className="text-black hover:underline">
             Campaign Planning
           </Link>
           <Link to="/seo-optimization" className="text-black hover:underline">
@@ -61,9 +72,25 @@ const Navbar = () => {
         </h1>
 
 
-        <button className="text-black text-2xl">
-          <FiSearch />
-        </button>
+        <div className="relative" ref={searchRef}>
+
+          <button className="text-black text-2xl" onClick={toggleSearch}>
+            <FiSearch />
+          </button>
+
+
+          {searchOpen && (
+            <div className="absolute top-0 right-10">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                className="w-48 p-2 border border-gray-400 rounded-md shadow-md focus:outline-none"
+              />
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );
