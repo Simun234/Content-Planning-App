@@ -55,12 +55,12 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Title */}
+
         <h1 className="font-serif font-bold text-base md:text-2xl lg:text-4xl">
           Content Planning
         </h1>
 
-        {/* Search Button */}
+
         <button className="text-black text-2xl">
           <FiSearch />
         </button>
