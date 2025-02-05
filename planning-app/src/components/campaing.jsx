@@ -8,13 +8,13 @@ function Campaing () {
     return(
         <>
         <Navbar />
-        <div className="w-52 h-90 bg-gradient-to-r from-[#1D8A8C] to-[#2F3C75] flex flex-col items-center justify-center mx-auto mt-9 rounded-xl md:w-2/3 h-2/4 lg:w-4/5 h-3/4	">
-          <h1 className="font-serif text-gray-300 text-base pb-12 md:text-2xl  lg:text-4xl	">Campaing Planning</h1>
-          <button className="w-48 h-14 bg-yellow-400 mb-9 font-serif text-gray-600 text-sm rounded-lg md:w-56 md:h-20 md:text-lg lg:w-60 lg:h-24 lg:text-2xl">
+        <div className="w-[208px] h-[353px] bg-gradient-to-r from-[#1D8A8C] to-[#2F3C75] flex flex-col items-center justify-center mx-auto mt-12 rounded-xl md:w-[558px] h-[720px] lg:w-[959px] h-[794px]">
+          <h1 className="	font-serif font-extrabold text-sm text-[#E0E0E0] mb-12 md:text-2xl lg:text-4xl ">Campaing Planning</h1>
+          <button className="w-[157px] h-[35px] bg-yellow-400 mb-8 font-serif font-semibold text-gray-600 text-xs rounded-lg md:w-[309px] h-[70px] text-xl lg:w-[609px] h-[100px] text-3xl">
            Campaing Planning
           </button>
-          <button className="w-48 h-14 bg-yellow-400 mb-9 font-serif text-gray-600 text-sm rounded-lg md:w-56 md:h-20 md:text-lg lg:w-60 lg:h-24 lg:text-2xl">Content Planning </button>
-          <img src={CampaingPicture} alt="campaing-planning" className="w-24 h-24 mb-3 md:w-52 h-32" />
+          <button className="w-[157px] h-[35px] bg-yellow-400 mb-4 font-serif font-semibold text-gray-600 text-xs rounded-lg md:w-[309px] h-[70px] text-xl lg:w-[609px] h-[100px] text-3xl ">Content Campaing Form </button>
+          <img src={CampaingPicture} alt="campaing-planning" className="w-[100px] h-[100px] md:w-[309px] h-[322px] " />
         </div>
         </>
     )
