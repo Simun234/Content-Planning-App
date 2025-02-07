@@ -4,6 +4,7 @@ import ContentPlan from "../images/content-plan.png";
 import Business from "../images/business.png";
 
 
+
 function Strategy () {
    
     return(
@@ -15,13 +16,13 @@ function Strategy () {
         </div>
 
         <div className="mt-7 flex flex-row gap-10 items-center justify-center md:mt-12 gap-40">
-          <button className="w-32 h-8 bg-[#000] text-white font-serif font-normal text-xs rounded-lg md:w-64 h-12 text-xl lg:w-96 h-20 text-2xl">Social Media Planning</button>
+          <button className="w-32 h-8 bg-[#000] text-white font-serif font-normal text-xs rounded-lg md:w-64 h-12 text-xl lg:w-96 h-20 text-2xl">Campaing Planning</button>
           <button className="w-32 h-8 bg-[#000] text-white font-serif font-normal text-xs rounded-lg md:w-64 h-12 text-xl lg:w-96 h-20 text-2xl">Email Marketing Planner</button>
         </div>
 
         <div className="mt-7 flex flex-row gap-10 items-center justify-center md:mt-12 gap-40">
           <button className="w-32 h-8 bg-[#000] text-white font-serif font-normal text-xs rounded-lg md:w-64 h-12 text-xl lg:w-96 h-20 text-2xl">Content Audit</button>
-          <button className="w-32 h-8 bg-[#000] text-white font-serif font-normal text-xs rounded-lg md:w-64 h-12 text-xl lg:w-96 h-20 text-2xl">SMA</button>
+          <button className="w-32 h-8 bg-[#000] text-white font-serif font-normal text-xs rounded-lg md:w-64 h-12 text-xl lg:w-96 h-20 text-2xl">SEO Optimization</button>
         </div>
 
         <div className="mt-7 flex flex-col gap-10 items-center justify-center md:mt-12 gap-24 lg:flex-row">

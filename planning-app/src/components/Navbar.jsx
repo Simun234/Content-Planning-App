@@ -45,7 +45,7 @@ const Navbar = () => {
               Content Strategy
             </Link>
             <Link to="/campaing-planning" className="text-black hover:underline mb-2" onClick={closeMenu}>
-              Campaign Planning
+              Campaing Planning
             </Link>
             <Link to="/seo-optimization" className="text-black hover:underline mb-2" onClick={closeMenu}>
               SEO Optimization
@@ -59,7 +59,7 @@ const Navbar = () => {
             Content Strategy
           </Link>
           <Link to="/campaing-planning" className="text-black hover:underline">
-            Campaign Planning
+            Campaing Planning
           </Link>
           <Link to="/seo-optimization" className="text-black hover:underline">
             SEO Optimization
