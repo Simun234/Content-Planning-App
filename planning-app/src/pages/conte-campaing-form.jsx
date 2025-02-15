@@ -6,7 +6,7 @@ function ContentForm() {
   const [file, setFile] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const platforms = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Other"];
+  const platforms = [ "Instagram", "Twitter", "Facebook", "LinkedIn"];
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -48,7 +48,7 @@ function ContentForm() {
 
         <header className="flex justify-center mb-8">
           <h1 className="font-serif font-bold text-xl text-gray-800">
-            Content Request Form
+            Content Campaing Form
           </h1>
         </header>
 
@@ -62,109 +62,37 @@ function ContentForm() {
 
 
         <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Author</p>
+          <p className="font-serif text-lg text-gray-800 mb-4">Post Title</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex flex-col">
               <input
                 type="text"
-                name="first_name"
-                placeholder="First Name"
                 className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
               />
-              <label className="mt-2 text-sm text-gray-600">First Name</label>
-            </div>
-            <div className="flex flex-col">
-              <input
-                type="text"
-                name="last_name"
-                placeholder="Last Name"
-                className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-              />
-              <label className="mt-2 text-sm text-gray-600">Last Name</label>
             </div>
           </div>
         </section>
 
-        <hr className="mb-8" />
-
 
         <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Date</p>
-          <input
-            type="date"
-            name="date"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-          />
-        </section>
-
-        <hr className="mb-8" />
-
-
-        <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Category</p>
+          <p className="font-serif text-lg text-gray-800 mb-4">Content Type</p>
           <select
             name="category"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
           >
             <option value="">Please Select</option>
-            <option value="Editor's Picks">Editor's Picks</option>
-            <option value="Healthy Life">Healthy Life</option>
-            <option value="Best Places to Visit">Best Places to Visit</option>
-            <option value="Best Recipes">Best Recipes</option>
-            <option value="Where to Eat">Where To Eat</option>
+            <option value="fashion">Fashion</option>
+            <option value="beauty">Beauty</option>
+            <option value="technology">Technology</option>
+            <option value="contest">Contest</option>
+            <option value="holiday">Holiday</option>
           </select>
         </section>
 
 
+       
         <section className="mb-8">
-          <label htmlFor="headline" className="font-serif text-lg text-gray-800 mb-2 block">
-            Headline
-          </label>
-          <textarea
-            id="headline"
-            name="headline"
-            value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
-            rows="2"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            placeholder="Enter headline"
-          />
-        </section>
-
-
-        <section className="mb-8">
-          <label htmlFor="subhead" className="font-serif text-lg text-gray-800 mb-2 block">
-            Sub-head
-          </label>
-          <textarea
-            id="subhead"
-            name="subhead"
-            value={subhead}
-            onChange={(e) => setSubhead(e.target.value)}
-            rows="2"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            placeholder="Enter sub-head"
-          />
-        </section>
-
-
-        <section className="mb-8">
-          <label htmlFor="fileInput" className="font-serif text-lg text-gray-800 mb-2 block">
-            Header Image
-          </label>
-          <input
-            type="file"
-            name="header_image"
-            onChange={handleFileChange}
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            id="fileInput"
-          />
-        </section>
-
-
-        <section className="mb-8">
-          <h2 className="font-serif font-bold text-lg text-gray-800 mb-4">Social Channels</h2>
-          <p className="font-serif text-gray-800 mb-4">The content will be shared on:</p>
+          <h2 className="font-serif font-bold text-lg text-gray-800 mb-4">Social Media Channels</h2>
           <div className="space-y-2">
             {platforms.map((platform) => (
               <div key={platform} className="flex items-center">
@@ -182,6 +110,20 @@ function ContentForm() {
             ))}
           </div>
         </section>
+
+
+        <section className="mb-8">
+          <p className="font-serif text-lg text-gray-800 mb-4"> Publish Date</p>
+          <input
+            type="date"
+            name="date"
+            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+          />
+        </section>
+
+
+
+
 
 
         <div className="mt-8 flex justify-center">
