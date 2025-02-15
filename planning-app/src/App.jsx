@@ -14,6 +14,7 @@ import EmailCalendar from "./pages/email-calendar";
 import EmailPlan from "./pages/email-plan";
 import ConttentAudit from "./pages/conttent-audit";
 import CampaignPlanning from "./pages/campaign-planning";
+import ListContent from "./pages/list-content";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
       <Route path="email-plan" element={<EmailPlan />} />
       <Route path="conttent-audit" element={<ConttentAudit />} />
       <Route path="campaign-planning" element={<CampaignPlanning/>} />
+      <Route path="list-content" element={<ListContent/>} />
     </Routes>
    </Router>
   );
