@@ -6,7 +6,6 @@ function EmailPlan() {
   const [file, setFile] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const platforms = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Other"];
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -48,7 +47,7 @@ function EmailPlan() {
 
         <header className="flex justify-center mb-8">
           <h1 className="font-serif font-bold text-xl text-gray-800">
-            Content Request Form
+          Email Campaign Plan Form 
           </h1>
         </header>
 
@@ -62,30 +61,28 @@ function EmailPlan() {
 
 
         <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Author</p>
+          <p className="font-serif text-lg text-gray-800 mb-4">E-Mail</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex flex-col">
               <input
                 type="text"
-                name="first_name"
-                placeholder="First Name"
+                name="e-mail"
+
                 className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
               />
-              <label className="mt-2 text-sm text-gray-600">First Name</label>
             </div>
             <div className="flex flex-col">
+
               <input
                 type="text"
-                name="last_name"
-                placeholder="Last Name"
+                placeholder="Enter Target"
                 className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
               />
-              <label className="mt-2 text-sm text-gray-600">Last Name</label>
+
             </div>
           </div>
         </section>
 
-        <hr className="mb-8" />
 
 
         <section className="mb-8">
@@ -97,21 +94,35 @@ function EmailPlan() {
           />
         </section>
 
-        <hr className="mb-8" />
 
 
         <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Category</p>
+          <p className="font-serif text-lg text-gray-800 mb-4">Type</p>
           <select
             name="category"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
           >
             <option value="">Please Select</option>
-            <option value="Editor's Picks">Editor's Picks</option>
-            <option value="Healthy Life">Healthy Life</option>
-            <option value="Best Places to Visit">Best Places to Visit</option>
-            <option value="Best Recipes">Best Recipes</option>
-            <option value="Where to Eat">Where To Eat</option>
+            <option value="promo">Promo</option>
+            <option value="newsletter">Newsletter</option>
+            <option value="survey">Survey</option>
+            <option value="reminder">Reminder</option>
+            <option value="webinar">Webinar</option>
+          </select>
+        </section>
+
+        <section className="mb-8">
+          <p className="font-serif text-lg text-gray-800 mb-4">Status</p>
+          <select
+            name="category"
+            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+          >
+            <option value="">Please Select</option>
+            <option value="planned">Planned</option>
+            <option value="send">Send</option>
+            <option value="ready">Ready to send</option>
+            <option value="in-progress">In Progress</option>
+            <option value="waiting">Waiting to be send</option>
           </select>
         </section>
 
@@ -127,14 +138,13 @@ function EmailPlan() {
             onChange={(e) => setHeadline(e.target.value)}
             rows="2"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            placeholder="Enter headline"
           />
         </section>
 
 
         <section className="mb-8">
           <label htmlFor="subhead" className="font-serif text-lg text-gray-800 mb-2 block">
-            Sub-head
+            Content
           </label>
           <textarea
             id="subhead"
@@ -143,18 +153,17 @@ function EmailPlan() {
             onChange={(e) => setSubhead(e.target.value)}
             rows="2"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            placeholder="Enter sub-head"
           />
         </section>
 
 
         <section className="mb-8">
           <label htmlFor="fileInput" className="font-serif text-lg text-gray-800 mb-2 block">
-            Header Image
+            Images
           </label>
           <input
             type="file"
-            name="header_image"
+            name="images"
             onChange={handleFileChange}
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
             id="fileInput"
@@ -162,26 +171,6 @@ function EmailPlan() {
         </section>
 
 
-        <section className="mb-8">
-          <h2 className="font-serif font-bold text-lg text-gray-800 mb-4">Social Channels</h2>
-          <p className="font-serif text-gray-800 mb-4">The content will be shared on:</p>
-          <div className="space-y-2">
-            {platforms.map((platform) => (
-              <div key={platform} className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="social_channels[]"
-                  value={platform}
-                  id={platform}
-                  className="h-4 w-4 text-lime-600 border-gray-300 rounded focus:ring-lime-500"
-                />
-                <label htmlFor={platform} className="ml-2 text-gray-700">
-                  {platform}
-                </label>
-              </div>
-            ))}
-          </div>
-        </section>
 
 
         <div className="mt-8 flex justify-center">
