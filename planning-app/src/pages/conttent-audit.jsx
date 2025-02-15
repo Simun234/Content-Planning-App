@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, Table } from "lucide-react"; 
 
-const AnalyticsReports = () => {
+const ConttentAudit = () => {
 
 const tableData = [
 
@@ -172,4 +172,4 @@ const tableData = [
   );
 }
 
-export default AnalyticsReports;
+export default ConttentAudit;

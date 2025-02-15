@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SeoForm() {
+function EmailPlan() {
   const [headline, setHeadline] = useState("");
   const [subhead, setSubhead] = useState("");
   const [file, setFile] = useState(null);
@@ -197,4 +197,4 @@ function SeoForm() {
   );
 }
 
-export default SeoForm;
+export default EmailPlan;

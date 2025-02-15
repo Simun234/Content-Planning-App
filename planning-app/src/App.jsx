@@ -10,6 +10,10 @@ import ContentAudit from "./pages/content-audit";
 import AnalyticsReports from "./pages/analytics-reports";
 import SeoAudit from "./pages/seo-audit";
 import ContentForm from "./pages/conte-campaing-form";
+import EmailCalendar from "./pages/email-calendar";
+import EmailPlan from "./pages/email-plan";
+import ConttentAudit from "./pages/conttent-audit";
+import CampaignPlanning from "./pages/campaign-planning";
 
 const App = () => {
   return (
@@ -25,6 +29,10 @@ const App = () => {
       <Route path="analytics-reports" element={<AnalyticsReports />} />
       <Route path="seo-audit" element={<SeoAudit />} />
       <Route path="content-form" element={<ContentForm />} />
+      <Route path="email-calendar" element={<EmailCalendar />} />
+      <Route path="email-plan" element={<EmailPlan />} />
+      <Route path="conttent-audit" element={<ConttentAudit />} />
+      <Route path="campaign-planning" element={<CampaignPlanning/>} />
     </Routes>
    </Router>
   );
