@@ -119,7 +119,7 @@ const tableData = [
           </button>
         </main>
       </div>
-      <table className="min-w-full bg-white rounded-lg">
+      <table className="min-w-full justify-center bg-white rounded-lg">
         <thead className="bg-[#F3F3FE]">
           <tr>
             <th className="px-4 py-2">
