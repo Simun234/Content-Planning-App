@@ -57,10 +57,10 @@ const EmailCalendar = () => {
     <>
 
       <div className="flex justify-center mt-12">
-        <header className="w-4/5 lg:w-[748px] h-12 flex items-center justify-between bg-[#049E38] rounded">
+        <header className="w-80 md:w-[626px] lg:w-[748px] h-12 flex items-center justify-between bg-[#049E38] rounded">
           <div className="flex gap-4">
             <button
-              className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]"
+              className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]"
               onClick={() => navigate("/email-calendar")}
             >
               <Table className="w-5 h-5" /> Tracking
@@ -73,7 +73,7 @@ const EmailCalendar = () => {
             </button>
             <button
               className="hidden md:flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]"
-              onClick={() => navigate("/email-calendar")}
+              onClick={() => navigate("/calendar")}
             >
               <Table className="w-5 h-5" /> Calendar
             </button>
