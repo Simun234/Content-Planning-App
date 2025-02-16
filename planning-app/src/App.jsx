@@ -15,6 +15,7 @@ import EmailPlan from "./pages/email-plan";
 import ConttentAudit from "./pages/conttent-audit";
 import CampaignPlanning from "./pages/campaign-planning";
 import ListContent from "./pages/list-content";
+import EmailContent from "./pages/email-content";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
       <Route path="conttent-audit" element={<ConttentAudit />} />
       <Route path="campaign-planning" element={<CampaignPlanning/>} />
       <Route path="list-content" element={<ListContent/>} />
+      <Route path="email-content" element={<EmailContent/>} />
     </Routes>
    </Router>
   );
