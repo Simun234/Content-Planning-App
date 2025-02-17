@@ -28,7 +28,6 @@ const Calendar = () => {
 
 
   const getDaysInMonth = (date) => {
-    const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
     const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const days = [];
     
