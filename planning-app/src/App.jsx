@@ -18,6 +18,7 @@ import ListContent from "./pages/list-content";
 import EmailContent from "./pages/email-content";
 import Calendar from "./pages/calendar";
 import ContentDetails from "./pages/content-details";
+import EventCelebration from "./pages/event-celebrations";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
       <Route path="email-content" element={<EmailContent/>} />
       <Route path="calendar" element={<Calendar/>} />
       <Route path="content-details" element={<ContentDetails/>} />
+      <Route path="event-celebrations" element={<EventCelebration/>} />
     </Routes>
    </Router>
   );
