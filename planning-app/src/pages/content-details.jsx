@@ -9,76 +9,76 @@ const ContentDetails = () => {
 const tableData = [
 
   {
-     headline:"Exploring the Depths of the Ocean",
-     status:"Awaiting Review",
-     category:"Science & Nature",
-     subHead:"A journey into the world beneath the waves",
-     link:"https://learning-center.homesciencetools.com/article/ocean-depths-science-lesson/",
-     publishDate:"2025-01-25",
-     socialPlatforms:"Facebook, Instagram",
-     fbCaption:"Dive into the mysterious world of the ocean with us!",
-     linkedinCaption:"Discover the wonders and challenges of ocean exploration.",   
+     title:"Feature Update Reminder Post",
+     assignee:"",
+     content:"Technology",
+     socialMedia:"Instagram Twitter Facebook",
+     publishDate:"May 16, 2022",
+     publishTime:"9:00 AM",
+     TwitterText:"",
+     InstagramPostLink:"",
+     status:"Waiting",   
   },
 
   {
-     headline:"The Rise of Electric Vehicle",
-     status:"Published",
-     category:"Technology",
-     subHead:"How electric vehicles are changing the automotive industry",
-     link:"https://www.resources.org/common-resources/electric-vehicles-hot-new-technology-or-bust/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Y4hFk5eU9D5nWRJHn3AFaLSVxLmtcPwFpN_GPDwLeneEvmrzQrDu4xoC_hIQAvD_BwE",
-     publishDate:"2025-02-10",
-     socialPlatforms:"Twitter, LinkedIn",
-     fbCaption:"Are electric vehicles the future? Learn more about their impact!",
-     linkedinCaption:"Electric vehicles are transforming the future of transportation.",
-  },
+    title:"The History and Importance of Software",
+    assignee:"",
+    content:"Technology",
+    socialMedia:"Facebook",
+    publishDate:"Nov 29, 2020",
+    publishTime:"10:00 AM",
+    TwitterText:"Software is the interface between computer systems and the people who use them.",
+    InstagramPostLink:"",
+    status:"Published",   
+ },
 
-  {
-     headline:"Mindfulness in the Modern World",
-     status:"Draft",
-     category:"Health & Wellness",
-     subHead:"How to find peace in a busy world",
-     link:"https://yso.soas.ac.uk/product/mindfulness-in-the-modern-world/",
-     publishDate:"2025-02-12",
-     socialPlatforms:"Instagram, Facebook",
-     fbCaption:"Mindfulness can improve your life in so many ways. Start today!",
-     linkedinCaption:"Take control of your mental well-being through mindfulness practices.",
-  },
+ {
+  title:"Fashion Brands Making Face Masks",
+  assignee:"",
+  content:"Fashion",
+  socialMedia:"Instagram",
+  publishDate:"Dec 8, 2020",
+  publishTime:"2:00 AM",
+  TwitterText:"",
+  InstagramPostLink:"www.example.com/instagram",
+  status:"Published",   
+},
 
-  {
-     headline:"The Secrets Behind Ancient Architecture",
-     status:"Published",
-     category:"History & Culture",
-     subHead:"Exploring the techniques and stories behind iconic structures",
-     link:"https://www.discovermagazine.com/the-sciences/the-3-secrets-behind-ancient-mayas-super-strong-architecture",
-     publishDate:"2025-03-05",
-     socialPlatforms:"Twitter, Facebook",
-     fbCaption:"Uncover the ancient secrets of architectural marvels that stand the test of time.",
-     linkedinCaption:"Learn how ancient civilizations built structures that still inspire today.",
+   {
+     title:" How Should I Organize My Wardrobe?",
+     assignee:"",
+     content:"Fashion",
+     socialMedia:"Instagram Twitter Facebook LinkedIn",
+     publishDate:"Dec 1, 2020",
+     publishTime:"9:30 AM",
+     TwitterText:"Here are some tips to organize your cloths. First things first, categorize your cloths as shirts, long sleeves, hoodies, jackets, etc. Then order them based on their colors and hang them with this order.",
+     InstagramPostLink:"www.example.com/instagram",
+     status:"In Progress",   
   },
+ 
+  {
+    title:"Sushi Workshop",
+    assignee:"",
+    content:"Company Event",
+    socialMedia:"Instagram Twitter Facebook LinkedIn",
+    publishDate:"Nov 30, 2020",
+    publishTime:"10:10 AM",
+    TwitterText:"Now, we all have learned how to make California Roll and Sake Maki! ",
+    InstagramPostLink:"www.example.com/instagram",
+    status:"Published",   
+ },
 
-  {
-     headline:"The Psychology of Happiness",
-     status:"Awaiting Review",
-     category:"Psychology",
-     subHead:"Understanding what makes us happy and how to achieve it",
-     link:"https://compassionandwisdom.org/what-is-happiness/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Y8Nt7xCwDj3axeR_qzew7dd9-nJxzq02ztbQTVCEhoh_VNIlud9slxoCu0cQAvD_BwE",
-     publishDate:"2025-02-01",
-     socialPlatforms:"Facebook, Instagram",
-     fbCaption:"What truly makes us happy? Explore the science of joy and well-being.",
-     linkedinCaption:"The path to happiness may be simpler than you think. Discover how!",
-  },
-
-  {
-     headline:"The Future of Space Travel",
-     status:"Published",
-     category:"Space & Astronomy",
-     subHead:"What’s next in the race to explore the cosmos?",
-     link:"https://spaceport.academy/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Yz8BLcxiicnNPOQtqTXLJYPszBcrYntQQ8nqePD4lvttPtpYzF7KERoCX2gQAvD_BwE",
-     publishDate:"2025-02-22",
-     socialPlatforms:"Twitter, LinkedIn",
-     fbCaption:"Space exploration is no longer just a dream—it's becoming reality!",
-     linkedinCaption:"Stay updated on the latest breakthroughs in space technology.",
-  },
+ {
+  title:"Top 8 Groundbreaking Future Technologies",
+  assignee:"",
+  content:"Technology",
+  socialMedia:"Instagram LinedIn Facebook",
+  publishDate:"Dec 2, 2020",
+  publishTime:"7:20 AM",
+  TwitterText:"It will be a flood -- Tweet 1: Groundbreaking future",
+  InstagramPostLink:"www.example.com/instagram",
+  status:"In Progress",   
+},
 
 ];
 
@@ -130,15 +130,15 @@ const tableData = [
             <th className="px-4 py-2">
               <input type="checkbox" className="w-4 h-4" />
             </th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Headline</th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Status</th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Category</th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Sub-head</th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Link</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Title</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Assignee</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Content Type</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Social Media Channel</th>
             <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Publish Date</th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Social Platforms</th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Facebook Caption</th>
-            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Linkedin Caption</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Publish Time</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Twitter Text</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Instagram Post Link</th>
+            <th className="font-serif bold text-sm text-[#000] p-4 md:text-lg">Status</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
@@ -147,7 +147,15 @@ const tableData = [
               <td className="px-4 py-2">
                 <input type="checkbox" className="w-4 h-4" />
               </td>
-              <td className="px-4 py-2">{row.headline}</td>
+              <td className="px-4 py-2">{row.title}</td>
+              
+              <td className="px-4 py-2">{row.assignee}</td>
+              <td className="px-4 py-2">{row.content}</td>
+              <td className="px-4 py-2">{row.socialMedia}</td>
+              <td className="px-4 py-2">{row.publishDate}</td>
+              <td className="px-4 py-2">{row.publishTime}</td>
+              <td className="px-4 py-2">{row.TwitterText}</td>
+              <td className="px-4 py-2">{row.InstagramPostLink}</td>
               <td className="px-4 py-2">
                 <span
                   className={`px-2 py-1 rounded ${
@@ -161,17 +169,6 @@ const tableData = [
                   {row.status}
                 </span>
               </td>
-              <td className="px-4 py-2">{row.category}</td>
-              <td className="px-4 py-2">{row.subHead}</td>
-              <td className="px-4 py-2">
-                <a href={row.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                  View Link
-                </a>
-              </td>
-              <td className="px-4 py-2">{row.publishDate}</td>
-              <td className="px-4 py-2">{row.socialPlatforms}</td>
-              <td className="px-4 py-2">{row.fbCaption}</td>
-              <td className="px-4 py-2">{row.linkedinCaption}</td>
             </tr>
           ))}
         </tbody>
