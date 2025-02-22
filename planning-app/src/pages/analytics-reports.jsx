@@ -89,7 +89,7 @@ const tableData = [
       <div className="flex justify-center mt-12">
         <header className="w-80 md:w-[626px] lg:w-[748px] h-12 flex items-center justify-between bg-[#049E38] rounded">
           <div className="flex gap-4">
-            <button className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm ml-2 md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]"onClick={() => navigate("/analytics-reports")} >
+            <button className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm ml-2 md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]"onClick={() => navigate("/top-content")} >
               <Table className="w-5 h-5" /> Top Content
             </button>
 
