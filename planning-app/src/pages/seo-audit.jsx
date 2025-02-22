@@ -1,200 +1,327 @@
 import React, { useState } from "react";
 
-function SeoForm() {
-  const [headline, setHeadline] = useState("");
-  const [subhead, setSubhead] = useState("");
-  const [file, setFile] = useState(null);
-  const [showSuccess, setShowSuccess] = useState(false);
+const SeoForm = () => {
+  const [formData, setFormData] = useState({
+    month: "",
+    channel: "",
+    totalPosts: "",
+    followersBefore: "",
+    followersAfter: "",
+    engagement: "",
+    bioLinkClicks: "",
+    storyViews: "",
+    videoViews: "",
+    impressions: "",
+    shares: "",
+    conversions: "",
+    clicks: "",
+    likes: "",
+    comments: "",
+  });
 
-  const platforms = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Other"];
+  const [submitted, setSubmitted] = useState(false); 
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        setShowSuccess(true);
-        setHeadline("");
-        setSubhead("");
-        setFile(null);
-        event.target.reset(); 
-      } else {
-        alert("Success!");
-      }
-    } catch (error) {
-      alert("Submission failed. Please check your internet connection.");
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData); 
+    setSubmitted(true);
   };
 
   return (
-    <div className="flex justify-center mt-12">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col w-full max-w-3xl bg-[#F4F4F4] p-6 rounded-lg shadow-md"
-        encType="multipart/form-data"
-      >
+    <div className="max-w-4xl mx-auto p-6">
+      <h2 className="flex justify-center text-2xl font-bold mb-6">
+        Social Media Insights Form
+      </h2>
+      <hr className="mb-8" />
 
 
-        <header className="flex justify-center mb-8">
-          <h1 className="font-serif font-bold text-xl text-gray-800">
-            Content Request Form
-          </h1>
-        </header>
-
-        {showSuccess && (
-          <div className="mb-8 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
-            <strong>Success!</strong> Your form has been submitted.
-          </div>
-        )}
-
-        <hr className="mb-8" />
-
-
-        <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Author</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex flex-col">
-              <input
-                type="text"
-                name="first_name"
-                placeholder="First Name"
-                className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-              />
-              <label className="mt-2 text-sm text-gray-600">First Name</label>
-            </div>
-            <div className="flex flex-col">
-              <input
-                type="text"
-                name="last_name"
-                placeholder="Last Name"
-                className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-              />
-              <label className="mt-2 text-sm text-gray-600">Last Name</label>
-            </div>
-          </div>
-        </section>
-
-        <hr className="mb-8" />
-
-
-        <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Date</p>
-          <input
-            type="date"
-            name="date"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-          />
-        </section>
-
-        <hr className="mb-8" />
-
-
-        <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Category</p>
-          <select
-            name="category"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-          >
-            <option value="">Please Select</option>
-            <option value="Editor's Picks">Editor's Picks</option>
-            <option value="Healthy Life">Healthy Life</option>
-            <option value="Best Places to Visit">Best Places to Visit</option>
-            <option value="Best Recipes">Best Recipes</option>
-            <option value="Where to Eat">Where To Eat</option>
-          </select>
-        </section>
-
-
-        <section className="mb-8">
-          <label htmlFor="headline" className="font-serif text-lg text-gray-800 mb-2 block">
-            Headline
-          </label>
-          <textarea
-            id="headline"
-            name="headline"
-            value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
-            rows="2"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            placeholder="Enter headline"
-          />
-        </section>
-
-
-        <section className="mb-8">
-          <label htmlFor="subhead" className="font-serif text-lg text-gray-800 mb-2 block">
-            Sub-head
-          </label>
-          <textarea
-            id="subhead"
-            name="subhead"
-            value={subhead}
-            onChange={(e) => setSubhead(e.target.value)}
-            rows="2"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            placeholder="Enter sub-head"
-          />
-        </section>
-
-
-        <section className="mb-8">
-          <label htmlFor="fileInput" className="font-serif text-lg text-gray-800 mb-2 block">
-            Header Image
-          </label>
-          <input
-            type="file"
-            name="header_image"
-            onChange={handleFileChange}
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            id="fileInput"
-          />
-        </section>
-
-
-        <section className="mb-8">
-          <h2 className="font-serif font-bold text-lg text-gray-800 mb-4">Social Channels</h2>
-          <p className="font-serif text-gray-800 mb-4">The content will be shared on:</p>
-          <div className="space-y-2">
-            {platforms.map((platform) => (
-              <div key={platform} className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="social_channels[]"
-                  value={platform}
-                  id={platform}
-                  className="h-4 w-4 text-lime-600 border-gray-300 rounded focus:ring-lime-500"
-                />
-                <label htmlFor={platform} className="ml-2 text-gray-700">
-                  {platform}
-                </label>
-              </div>
-            ))}
-          </div>
-        </section>
-
-
-        <div className="mt-8 flex justify-center">
-          <button
-            type="submit"
-            className="bg-lime-500 text-white font-bold py-2 px-6 rounded hover:bg-lime-600 transition"
-          >
-            Submit
-          </button>
+      {submitted ? (
+        <div className="text-center">
+          <h3 className="text-2xl font-bold text-green-500 mb-4">Thank You!</h3>
+          <p>Your submission has been received.</p>
         </div>
-      </form>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="month" className="block text-sm font-medium text-gray-700">
+                Month
+              </label>
+              <select
+                name="month"
+                id="month"
+                value={formData.month}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              >
+                <option>Please Select</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="channel" className="block text-sm font-medium text-gray-700">
+                Channel
+              </label>
+              <select
+                name="channel"
+                id="channel"
+                value={formData.channel}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              >
+                <option>Please Select</option>
+                <option>Instagram</option>
+                <option>Facebook</option>
+                <option>Twitter</option>
+                <option>Linkedin</option>
+                <option>Bing</option>
+                <option>Youtube</option>
+                <option>Pinterest</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="totalPosts" className="block text-sm font-medium text-gray-700">
+                Total Number of Posts
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="totalPosts"
+                id="totalPosts"
+                value={formData.totalPosts}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="followersBefore" className="block text-sm font-medium text-gray-700">
+                Followers | Before
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="followersBefore"
+                id="followersBefore"
+                value={formData.followersBefore}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="followersAfter" className="block text-sm font-medium text-gray-700">
+                Followers | After
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="followersAfter"
+                id="followersAfter"
+                value={formData.followersAfter}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="engagement" className="block text-sm font-medium text-gray-700">
+                Engagement
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="engagement"
+                id="engagement"
+                value={formData.engagement}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="bioLinkClicks" className="block text-sm font-medium text-gray-700">
+                Bio Link Clicks
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="bioLinkClicks"
+                id="bioLinkClicks"
+                value={formData.bioLinkClicks}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="storyViews" className="block text-sm font-medium text-gray-700">
+                Story Views
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="storyViews"
+                id="storyViews"
+                value={formData.storyViews}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="videoViews" className="block text-sm font-medium text-gray-700">
+                Video Views
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="videoViews"
+                id="videoViews"
+                value={formData.videoViews}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="impressions" className="block text-sm font-medium text-gray-700">
+                Impressions
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="impressions"
+                id="impressions"
+                value={formData.impressions}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="shares" className="block text-sm font-medium text-gray-700">
+                Shares
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="shares"
+                id="shares"
+                value={formData.shares}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="conversions" className="block text-sm font-medium text-gray-700">
+                Conversions
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="conversions"
+                id="conversions"
+                value={formData.conversions}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="clicks" className="block text-sm font-medium text-gray-700">
+                Clicks
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="clicks"
+                id="clicks"
+                value={formData.clicks}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="likes" className="block text-sm font-medium text-gray-700">
+                Likes
+              </label>
+              <input
+                type="number"
+                placeholder="ex:23"
+                name="likes"
+                id="likes"
+                value={formData.likes}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="comments" className="block text-sm font-medium text-gray-700">
+                Comments
+              </label>
+              <textarea
+                name="comments"
+                placeholder="ex:23"
+                id="comments"
+                value={formData.comments}
+                onChange={handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+          </div>
+
+          <hr className="mb-8" />
+          <div className="flex justify-center mt-4">
+            <button
+              type="submit"
+              className="px-6 py-2 bg-blue-500 text-white rounded-md"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      )}
     </div>
   );
-}
+};
 
 export default SeoForm;
