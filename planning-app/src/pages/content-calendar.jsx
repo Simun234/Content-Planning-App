@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, Table } from "lucide-react"; 
 
 const ContentCalendar = () => {
 
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
 
 const tableData = [
 
@@ -86,24 +88,47 @@ const tableData = [
 
   return (
     <>
-      <div className="flex justify-center mt-12">
-        <header className="w-80 md:w-[626px] lg:w-[748px] h-12 flex items-center justify-between bg-[#049E38] rounded">
+       <div className="flex justify-center mt-12">
+        <header className="w-80 md:w-[626px] lg:w-[748px] h-12 flex items-center justify-between bg-[#049E38] rounded relative">
           <div className="flex gap-4">
-            <button className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm ml-2 md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]" onClick={() => navigate("/list-content")}>
+            <button 
+              className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm ml-2 md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]" 
+              onClick={() => navigate("/content-calendar")}
+            >
               <Table className="w-5 h-5" /> Content Record
             </button>
 
-
-            <button className="hidden md:flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]" onClick={() => navigate("/list-content")}>
+            <button 
+              className="hidden md:flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]" 
+              onClick={() => navigate("/list-content")}
+            >
               <Table className="w-5 h-5" /> Authors' Timesheet
             </button>
           </div>
 
+          <Menu 
+            className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" 
+            onClick={() => setMenuOpen(!menuOpen)} 
+          />
 
-          <Menu className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" />
+          {menuOpen && (
+            <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
+              <button 
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => { navigate("/content-calendar"); setMenuOpen(false); }}
+              >
+                Content Record
+              </button>
+              <button 
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => { navigate("/list-content"); setMenuOpen(false); }}
+              >
+                Authors' Timesheet
+              </button>
+            </div>
+          )}
         </header>
       </div>
-
       <div className="flex justify-center items-center mt-3">
         <main className="w-80 md:w-[626px] lg:w-[748px] flex items-center gap-2">
 
