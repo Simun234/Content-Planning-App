@@ -6,6 +6,7 @@ const Calendar = () => {
   const navigate = useNavigate();
 
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const goToPreviousMonth = () => {
     setCurrentDate((prevDate) => {
@@ -69,7 +70,33 @@ const Calendar = () => {
               <Table className="w-5 h-5" /> Calendar
             </button>
           </div>
-          <Menu className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" />
+          <Menu 
+                                  className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" 
+                                  onClick={() => setMenuOpen(!menuOpen)} 
+                                />
+         
+                     {menuOpen && (
+                     <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
+                       <button 
+                         className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                         onClick={() => { navigate("/email-calendar"); setMenuOpen(false); }}
+                       >
+                         Tracking
+                       </button>
+                       <button 
+                         className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                         onClick={() => { navigate("/email-content"); setMenuOpen(false); }}
+                       >
+                         Email Content
+                       </button>
+                       <button 
+                         className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                         onClick={() => { navigate("/calendar"); setMenuOpen(false); }}
+                       >
+                         Calendar
+                       </button>
+                     </div>
+                   )}
         </header>
       </div>
 

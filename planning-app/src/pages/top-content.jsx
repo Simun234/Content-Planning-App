@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, Table } from "lucide-react"; 
 
 const TopContent = () => {
 
 const navigate = useNavigate();
+const [menuOpen, setMenuOpen] = useState(false);
 
   const [posts] = useState([
     { id: 1, title: "What Is Beyond We See?", date: "Mar 18, 2020 09:00 AM" },
@@ -27,7 +28,28 @@ const navigate = useNavigate();
                 </button>
               </div>
     
-              <Menu className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" />
+              <Menu 
+                                      className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" 
+                                      onClick={() => setMenuOpen(!menuOpen)} 
+                                    />
+             
+                       {menuOpen && (
+                         <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
+                           <button 
+                             className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                             onClick={() => { navigate("/top-content"); setMenuOpen(false); }}
+                           >
+                             Top Content
+                           </button>
+                           <button 
+                             className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                             onClick={() => { navigate("/analytics-reports"); setMenuOpen(false); }}
+                           >
+                             Analytics
+                           </button>
+                         </div>
+                       )}
+             
             </header>
           </div>
 

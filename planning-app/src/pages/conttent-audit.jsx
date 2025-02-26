@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, Table } from "lucide-react";
 
 const ConttentAudit = () => {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const tableData = [
     { writer: "Willie Pisano", suggested: "5 Tools to Boost Your Conversion Rates", cost: "$7450" },
@@ -34,7 +35,28 @@ const ConttentAudit = () => {
               <Table className="w-5 h-5" /> List of Content
             </button>
           </div>
-          <Menu className="w-8 h-8 text-white cursor-pointer" />
+          <Menu 
+                         className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" 
+                         onClick={() => setMenuOpen(!menuOpen)} 
+                       />
+
+          {menuOpen && (
+            <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
+              <button 
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => { navigate("/conttent-audit"); setMenuOpen(false); }}
+              >
+                 Writers/Designers
+              </button>
+              <button 
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => { navigate("/list-content"); setMenuOpen(false); }}
+              >
+               List of Content
+              </button>
+            </div>
+          )}
+
         </header>
       </div>
 
