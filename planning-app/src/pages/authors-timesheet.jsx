@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, Table } from "lucide-react";
 
 const AuthorsTimesheet = () => {
   const navigate = useNavigate();
+    const [menuOpen, setMenuOpen] = useState(false);
 
   const tableData = [
     {
@@ -73,7 +74,29 @@ const AuthorsTimesheet = () => {
                       <Table className="w-5 h-5" /> Authors' Timesheet
                     </button>
                   </div>
-          <Menu className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" />
+             
+             
+                       <Menu 
+                         className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" 
+                         onClick={() => setMenuOpen(!menuOpen)} 
+                       />
+
+          {menuOpen && (
+            <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
+              <button 
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => { navigate("/content-calendar"); setMenuOpen(false); }}
+              >
+                Content Record
+              </button>
+              <button 
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => { navigate("/authors-timesheet"); setMenuOpen(false); }}
+              >
+                Authors' Timesheet
+              </button>
+            </div>
+          )}
         </header>
       </div>
 

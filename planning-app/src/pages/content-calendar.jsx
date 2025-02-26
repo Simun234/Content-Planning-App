@@ -121,7 +121,7 @@ const tableData = [
               </button>
               <button 
                 className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
-                onClick={() => { navigate("/list-content"); setMenuOpen(false); }}
+                onClick={() => { navigate("/authors-timesheet"); setMenuOpen(false); }}
               >
                 Authors' Timesheet
               </button>
