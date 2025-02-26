@@ -20,6 +20,7 @@ import Calendar from "./pages/calendar";
 import ContentDetails from "./pages/content-details";
 import EventCelebration from "./pages/event-celebrations";
 import TopContent from "./pages/top-content";
+import AuthorsTimesheet from "./pages/authors-timesheet";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
       <Route path="content-details" element={<ContentDetails/>} />
       <Route path="event-celebrations" element={<EventCelebration/>} />
       <Route path="top-content" element={<TopContent/>} />
+      <Route path="authors-timesheet" element={<AuthorsTimesheet/>} />
     </Routes>
    </Router>
   );
