@@ -21,6 +21,7 @@ import ContentDetails from "./pages/content-details";
 import EventCelebration from "./pages/event-celebrations";
 import TopContent from "./pages/top-content";
 import AuthorsTimesheet from "./pages/authors-timesheet";
+import ContentAuditForm from "./pages/content-audit-form";
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
       <Route path="event-celebrations" element={<EventCelebration/>} />
       <Route path="top-content" element={<TopContent/>} />
       <Route path="authors-timesheet" element={<AuthorsTimesheet/>} />
+      <Route path="audit-form" element={<ContentAuditForm/>} />
     </Routes>
    </Router>
   );

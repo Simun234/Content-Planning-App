@@ -16,7 +16,7 @@ function ContentAudit () {
           <button className="w-[157px] h-[35px] bg-yellow-400 mb-8 font-serif font-semibold text-gray-600 text-xs rounded-lg md:w-[309px] h-[70px] text-xl lg:w-[609px] h-[100px] text-3xl" onClick={() => navigate("/conttent-audit")}>
            Content Audit
           </button>
-          <button className="w-[157px] h-[35px] bg-yellow-400 mb-4 font-serif font-semibold text-gray-600 text-xs rounded-lg md:w-[309px] h-[70px] text-xl lg:w-[609px] h-[100px] text-3xl"onClick={() => navigate("/content-form")}>Content Audit Form </button>
+          <button className="w-[157px] h-[35px] bg-yellow-400 mb-4 font-serif font-semibold text-gray-600 text-xs rounded-lg md:w-[309px] h-[70px] text-xl lg:w-[609px] h-[100px] text-3xl"onClick={() => navigate("/audit-form")}>Content Audit Form </button>
           <img src={CampaingPicture} alt="campaing-planning" className="w-[100px] h-[100px] md:w-[309px] h-[322px] " />
         </div>
         </>
