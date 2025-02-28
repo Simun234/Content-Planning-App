@@ -1,127 +1,138 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, Table } from "lucide-react"; 
+import { Menu, Table } from "lucide-react";
 
 const ContentCalendar = () => {
-
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filter, setFilter] = useState("");
+
+  const tableData = [
+    {
+      headline: "Exploring the Depths of the Ocean",
+      status: "Awaiting Review",
+      category: "Science & Nature",
+      subHead: "A journey into the world beneath the waves",
+      link: "https://learning-center.homesciencetools.com/article/ocean-depths-science-lesson/",
+      publishDate: "2025-01-25",
+      socialPlatforms: "Facebook, Instagram",
+      fbCaption: "Dive into the mysterious world of the ocean with us!",
+      linkedinCaption: "Discover the wonders and challenges of ocean exploration.",
+    },
+    {
+      headline: "The Rise of Electric Vehicle",
+      status: "Published",
+      category: "Technology",
+      subHead: "How electric vehicles are changing the automotive industry",
+      link: "https://www.resources.org/common-resources/electric-vehicles-hot-new-technology-or-bust/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Y4hFk5eU9D5nWRJHn3AFaLSVxLmtcPwFpN_GPDwLeneEvmrzQrDu4xoC_hIQAvD_BwE",
+      publishDate: "2025-02-10",
+      socialPlatforms: "Twitter, LinkedIn",
+      fbCaption: "Are electric vehicles the future? Learn more about their impact!",
+      linkedinCaption: "Electric vehicles are transforming the future of transportation.",
+    },
+    {
+      headline: "Mindfulness in the Modern World",
+      status: "Draft",
+      category: "Health & Wellness",
+      subHead: "How to find peace in a busy world",
+      link: "https://yso.soas.ac.uk/product/mindfulness-in-the-modern-world/",
+      publishDate: "2025-02-12",
+      socialPlatforms: "Instagram, Facebook",
+      fbCaption: "Mindfulness can improve your life in so many ways. Start today!",
+      linkedinCaption: "Take control of your mental well-being through mindfulness practices.",
+    },
+    {
+      headline: "The Secrets Behind Ancient Architecture",
+      status: "Published",
+      category: "History & Culture",
+      subHead: "Exploring the techniques and stories behind iconic structures",
+      link: "https://www.discovermagazine.com/the-sciences/the-3-secrets-behind-ancient-mayas-super-strong-architecture",
+      publishDate: "2025-03-05",
+      socialPlatforms: "Twitter, Facebook",
+      fbCaption: "Uncover the ancient secrets of architectural marvels that stand the test of time.",
+      linkedinCaption: "Learn how ancient civilizations built structures that still inspire today.",
+    },
+    {
+      headline: "The Psychology of Happiness",
+      status: "Awaiting Review",
+      category: "Psychology",
+      subHead: "Understanding what makes us happy and how to achieve it",
+      link: "https://compassionandwisdom.org/what-is-happiness/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Y8Nt7xCwDj3axeR_qzew7dd9-nJxzq02ztbQTVCEhoh_VNIlud9slxoCu0cQAvD_BwE",
+      publishDate: "2025-02-01",
+      socialPlatforms: "Facebook, Instagram",
+      fbCaption: "What truly makes us happy? Explore the science of joy and well-being.",
+      linkedinCaption: "The path to happiness may be simpler than you think. Discover how!",
+    },
+    {
+      headline: "The Future of Space Travel",
+      status: "Published",
+      category: "Space & Astronomy",
+      subHead: "What’s next in the race to explore the cosmos?",
+      link: "https://spaceport.academy/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Yz8BLcxiicnNPOQtqTXLJYPszBcrYntQQ8nqePD4lvttPtpYzF7KERoCX2gQAvD_BwE",
+      publishDate: "2025-02-22",
+      socialPlatforms: "Twitter, LinkedIn",
+      fbCaption: "Space exploration is no longer just a dream—it's becoming reality!",
+      linkedinCaption: "Stay updated on the latest breakthroughs in space technology.",
+    },
+  ];
 
 
-const tableData = [
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
 
-  {
-     headline:"Exploring the Depths of the Ocean",
-     status:"Awaiting Review",
-     category:"Science & Nature",
-     subHead:"A journey into the world beneath the waves",
-     link:"https://learning-center.homesciencetools.com/article/ocean-depths-science-lesson/",
-     publishDate:"2025-01-25",
-     socialPlatforms:"Facebook, Instagram",
-     fbCaption:"Dive into the mysterious world of the ocean with us!",
-     linkedinCaption:"Discover the wonders and challenges of ocean exploration.",   
-  },
-
-  {
-     headline:"The Rise of Electric Vehicle",
-     status:"Published",
-     category:"Technology",
-     subHead:"How electric vehicles are changing the automotive industry",
-     link:"https://www.resources.org/common-resources/electric-vehicles-hot-new-technology-or-bust/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Y4hFk5eU9D5nWRJHn3AFaLSVxLmtcPwFpN_GPDwLeneEvmrzQrDu4xoC_hIQAvD_BwE",
-     publishDate:"2025-02-10",
-     socialPlatforms:"Twitter, LinkedIn",
-     fbCaption:"Are electric vehicles the future? Learn more about their impact!",
-     linkedinCaption:"Electric vehicles are transforming the future of transportation.",
-  },
-
-  {
-     headline:"Mindfulness in the Modern World",
-     status:"Draft",
-     category:"Health & Wellness",
-     subHead:"How to find peace in a busy world",
-     link:"https://yso.soas.ac.uk/product/mindfulness-in-the-modern-world/",
-     publishDate:"2025-02-12",
-     socialPlatforms:"Instagram, Facebook",
-     fbCaption:"Mindfulness can improve your life in so many ways. Start today!",
-     linkedinCaption:"Take control of your mental well-being through mindfulness practices.",
-  },
-
-  {
-     headline:"The Secrets Behind Ancient Architecture",
-     status:"Published",
-     category:"History & Culture",
-     subHead:"Exploring the techniques and stories behind iconic structures",
-     link:"https://www.discovermagazine.com/the-sciences/the-3-secrets-behind-ancient-mayas-super-strong-architecture",
-     publishDate:"2025-03-05",
-     socialPlatforms:"Twitter, Facebook",
-     fbCaption:"Uncover the ancient secrets of architectural marvels that stand the test of time.",
-     linkedinCaption:"Learn how ancient civilizations built structures that still inspire today.",
-  },
-
-  {
-     headline:"The Psychology of Happiness",
-     status:"Awaiting Review",
-     category:"Psychology",
-     subHead:"Understanding what makes us happy and how to achieve it",
-     link:"https://compassionandwisdom.org/what-is-happiness/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Y8Nt7xCwDj3axeR_qzew7dd9-nJxzq02ztbQTVCEhoh_VNIlud9slxoCu0cQAvD_BwE",
-     publishDate:"2025-02-01",
-     socialPlatforms:"Facebook, Instagram",
-     fbCaption:"What truly makes us happy? Explore the science of joy and well-being.",
-     linkedinCaption:"The path to happiness may be simpler than you think. Discover how!",
-  },
-
-  {
-     headline:"The Future of Space Travel",
-     status:"Published",
-     category:"Space & Astronomy",
-     subHead:"What’s next in the race to explore the cosmos?",
-     link:"https://spaceport.academy/?gad_source=1&gclid=CjwKCAiAwaG9BhAREiwAdhv6Yz8BLcxiicnNPOQtqTXLJYPszBcrYntQQ8nqePD4lvttPtpYzF7KERoCX2gQAvD_BwE",
-     publishDate:"2025-02-22",
-     socialPlatforms:"Twitter, LinkedIn",
-     fbCaption:"Space exploration is no longer just a dream—it's becoming reality!",
-     linkedinCaption:"Stay updated on the latest breakthroughs in space technology.",
-  },
-
-];
-
-
+  const filteredData = tableData.filter((row) =>
+    row.headline.toUpperCase().includes(filter.toUpperCase()) ||
+    row.status.toUpperCase().includes(filter.toUpperCase()) ||
+    row.category.toUpperCase().includes(filter.toUpperCase()) ||
+    row.subHead.toUpperCase().includes(filter.toUpperCase()) ||
+    row.socialPlatforms.toUpperCase().includes(filter.toUpperCase()) ||
+    row.fbCaption.toUpperCase().includes(filter.toUpperCase()) ||
+    row.linkedinCaption.toUpperCase().includes(filter.toUpperCase())
+  );
 
   return (
     <>
-       <div className="flex justify-center mt-12">
+      <div className="flex justify-center mt-12">
         <header className="w-80 md:w-[626px] lg:w-[748px] h-12 flex items-center justify-between bg-[#049E38] rounded relative">
           <div className="flex gap-4">
-            <button 
-              className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm ml-2 md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]" 
+            <button
+              className="flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm ml-2 md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]"
               onClick={() => navigate("/content-calendar")}
             >
               <Table className="w-5 h-5" /> Content Record
             </button>
 
-            <button 
-              className="hidden md:flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]" 
+            <button
+              className="hidden md:flex items-center gap-2 bg-[#9C4DD3] text-white font-serif font-bold text-sm md:text-base lg:text-lg px-4 py-2 rounded hover:bg-white hover:text-[#9C4DD3]"
               onClick={() => navigate("/authors-timesheet")}
             >
               <Table className="w-5 h-5" /> Authors' Timesheet
             </button>
           </div>
 
-          <Menu 
-            className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" 
-            onClick={() => setMenuOpen(!menuOpen)} 
+          <Menu
+            className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8"
+            onClick={() => setMenuOpen(!menuOpen)}
           />
 
           {menuOpen && (
             <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
-              <button 
+              <button
                 className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
-                onClick={() => { navigate("/content-calendar"); setMenuOpen(false); }}
+                onClick={() => {
+                  navigate("/content-calendar");
+                  setMenuOpen(false);
+                }}
               >
                 Content Record
               </button>
-              <button 
+              <button
                 className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
-                onClick={() => { navigate("/authors-timesheet"); setMenuOpen(false); }}
+                onClick={() => {
+                  navigate("/authors-timesheet");
+                  setMenuOpen(false);
+                }}
               >
                 Authors' Timesheet
               </button>
@@ -131,17 +142,15 @@ const tableData = [
       </div>
       <div className="flex justify-center items-center mt-3">
         <main className="w-80 md:w-[626px] lg:w-[748px] flex items-center gap-2">
-
           <input
             type="text"
             placeholder="Search"
+            value={filter}
+            onChange={handleSearchChange}
             className="flex-1 h-12 border border-[#C6C9D7] rounded p-2 text-[#A1A7B3] focus:outline-none focus:ring-2 focus:ring-[#9C4DD3]"
           />
-          
 
-          <button className="w-16 h-12 bg-[#FBFBFE] border border-[#E3E3E9] rounded text-[#8585A9] hover:bg-[#E3E3E9]">
-            Filter
-          </button>
+         
         </main>
       </div>
       <table className="min-w-full bg-white rounded-lg">
@@ -162,7 +171,7 @@ const tableData = [
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {tableData.map((row, index) => (
+          {filteredData.map((row, index) => (
             <tr key={index}>
               <td className="px-4 py-2">
                 <input type="checkbox" className="w-4 h-4" />
@@ -198,6 +207,6 @@ const tableData = [
       </table>
     </>
   );
-}
+};
 
 export default ContentCalendar;

@@ -5,6 +5,7 @@ import { Menu, Table } from "lucide-react";
 const EmailCalendar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const tableData = [
     {
@@ -53,6 +54,23 @@ const EmailCalendar = () => {
       Cta: "Shop Now",
     },
   ];
+
+
+
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const filteredData = tableData.filter((row) =>
+    row.Email.toUpperCase().includes(filter.toUpperCase()) ||
+    row.Status.toUpperCase().includes(filter.toUpperCase()) ||
+    row.Type.toUpperCase().includes(filter.toUpperCase()) ||
+    row.Target.toUpperCase().includes(filter.toUpperCase()) ||
+    row.Date.toUpperCase().includes(filter.toUpperCase()) ||
+    row.Headline.toUpperCase().includes(filter.toUpperCase()) ||
+    row.Cta.toUpperCase().includes(filter.toUpperCase())
+  );
+
 
   return (
     <>
@@ -114,14 +132,14 @@ const EmailCalendar = () => {
 
       <div className="flex justify-center items-center mt-3">
         <main className="w-4/5 lg:w-[748px] flex items-center gap-2">
-          <input
+        <input
             type="text"
             placeholder="Search"
+            value={filter}
+            onChange={handleSearchChange}
             className="flex-1 h-12 border border-[#C6C9D7] rounded p-2 text-[#A1A7B3] focus:outline-none focus:ring-2 focus:ring-[#9C4DD3]"
           />
-          <button className="w-16 h-12 bg-[#FBFBFE] border border-[#E3E3E9] rounded text-[#8585A9] hover:bg-[#E3E3E9]">
-            Filter
-          </button>
+         
         </main>
       </div>
 
@@ -143,7 +161,7 @@ const EmailCalendar = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {tableData.map((row, index) => (
+            {filteredData.map((row, index) => (
               <tr key={index} className="even:bg-gray-50">
                 <td className="px-4 py-2">
                   <input type="checkbox" className="w-4 h-4" />

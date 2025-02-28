@@ -5,6 +5,7 @@ import { Menu, Table } from "lucide-react";
 const ConttentAudit = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const tableData = [
     { writer: "Willie Pisano", suggested: "5 Tools to Boost Your Conversion Rates", cost: "$7450" },
@@ -14,6 +15,18 @@ const ConttentAudit = () => {
     { writer: "The Makery", suggested: "How To Avoid Burnout", cost: "$2350" },
     { writer: "Rose Hunter", suggested: "The Potential of Social Media", cost: "$0" },
   ];
+
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+
+  const filteredData = tableData.filter((row) =>
+    row.writer.toUpperCase().includes(filter.toUpperCase()) ||
+    row.suggested.toUpperCase().includes(filter.toUpperCase()) ||
+    row.cost.toUpperCase().includes(filter.toUpperCase())
+  );
+
 
   return (
     <>
@@ -63,14 +76,15 @@ const ConttentAudit = () => {
 
       <div className="flex justify-center items-center mt-3">
         <main className="w-[748px] flex items-center gap-2">
-          <input
+        <input
             type="text"
             placeholder="Search"
-            className="flex-1 h-12 border border-gray-300 rounded p-2 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#9C4DD3]"
+            value={filter}
+            onChange={handleSearchChange}
+            className="flex-1 h-12 border border-[#C6C9D7] rounded p-2 text-[#A1A7B3] focus:outline-none focus:ring-2 focus:ring-[#9C4DD3]"
           />
-          <button className="w-16 h-12 bg-white border border-gray-300 rounded text-gray-600 hover:bg-gray-200">
-            Filter
-          </button>
+
+         
         </main>
       </div>
 
@@ -88,7 +102,7 @@ const ConttentAudit = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {tableData.map((row, index) => (
+            {filteredData.map((row, index) => (
               <tr key={index} className="hover:bg-gray-50">
                 <td className="px-6 py-4 text-left">
                   <input type="checkbox" className="w-5 h-5" />

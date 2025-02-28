@@ -111,9 +111,7 @@ const CampaignPlanning = () => {
           />
           
 
-          <button className="w-16 h-12 bg-[#FBFBFE] border border-[#E3E3E9] rounded text-[#8585A9] hover:bg-[#E3E3E9]">
-            Filter
-          </button>
+          
         </main>
 
       </div>
