@@ -1,35 +1,66 @@
 import React, { useState } from "react";
 
 function EmailPlan() {
-  const [headline, setHeadline] = useState("");
-  const [subhead, setSubhead] = useState("");
-  const [file, setFile] = useState(null);
+  const [formData, setFormData] = useState({
+    email: "",
+    target: "",
+    date: "",
+    category: "",
+    status: "",
+    headline: "",
+    subhead: "",
+    file: null,
+  });
+
   const [showSuccess, setShowSuccess] = useState(false);
 
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
 
-    const formData = new FormData(event.target);
-    
+  const handleFileChange = (e) => {
+    setFormData({
+      ...formData,
+      file: e.target.files[0],
+    });
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formDataObj = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataObj.append(key, formData[key]);
+    });
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        body: formDataObj,
       });
 
       if (response.ok) {
         setShowSuccess(true);
-        setHeadline("");
-        setSubhead("");
-        setFile(null);
-        event.target.reset(); 
+        setFormData({
+          email: "",
+          target: "",
+          date: "",
+          category: "",
+          status: "",
+          headline: "",
+          subhead: "",
+          file: null,
+        });
+        e.target.reset();
       } else {
-        alert("Success!");
+        alert("Submission failed. Please try again.");
       }
     } catch (error) {
       alert("Submission failed. Please check your internet connection.");
@@ -43,11 +74,9 @@ function EmailPlan() {
         className="flex flex-col w-full max-w-3xl bg-[#F4F4F4] p-6 rounded-lg shadow-md"
         encType="multipart/form-data"
       >
-
-
         <header className="flex justify-center mb-8">
           <h1 className="font-serif font-bold text-xl text-gray-800">
-          Email Campaign Plan Form 
+            Email Campaign Plan Form
           </h1>
         </header>
 
@@ -65,24 +94,28 @@ function EmailPlan() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex flex-col">
               <input
-                type="text"
-                name="e-mail"
-
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+                placeholder="Enter your email"
+                required
               />
             </div>
             <div className="flex flex-col">
-
               <input
                 type="text"
+                name="target"
+                value={formData.target}
+                onChange={handleChange}
                 placeholder="Enter Target"
                 className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+                required
               />
-
             </div>
           </div>
         </section>
-
 
 
         <section className="mb-8">
@@ -90,17 +123,22 @@ function EmailPlan() {
           <input
             type="date"
             name="date"
+            value={formData.date}
+            onChange={handleChange}
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+            required
           />
         </section>
-
 
 
         <section className="mb-8">
           <p className="font-serif text-lg text-gray-800 mb-4">Type</p>
           <select
             name="category"
+            value={formData.category}
+            onChange={handleChange}
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+            required
           >
             <option value="">Please Select</option>
             <option value="promo">Promo</option>
@@ -111,18 +149,22 @@ function EmailPlan() {
           </select>
         </section>
 
+
         <section className="mb-8">
           <p className="font-serif text-lg text-gray-800 mb-4">Status</p>
           <select
-            name="category"
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+            required
           >
             <option value="">Please Select</option>
             <option value="planned">Planned</option>
             <option value="send">Send</option>
             <option value="ready">Ready to send</option>
             <option value="in-progress">In Progress</option>
-            <option value="waiting">Waiting to be send</option>
+            <option value="waiting">Waiting to be sent</option>
           </select>
         </section>
 
@@ -134,10 +176,12 @@ function EmailPlan() {
           <textarea
             id="headline"
             name="headline"
-            value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
+            value={formData.headline}
+            onChange={handleChange}
             rows="2"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+            placeholder="Enter your headline"
+            required
           />
         </section>
 
@@ -149,10 +193,12 @@ function EmailPlan() {
           <textarea
             id="subhead"
             name="subhead"
-            value={subhead}
-            onChange={(e) => setSubhead(e.target.value)}
+            value={formData.subhead}
+            onChange={handleChange}
             rows="2"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+            placeholder="Enter your content"
+            required
           />
         </section>
 
@@ -163,14 +209,13 @@ function EmailPlan() {
           </label>
           <input
             type="file"
-            name="images"
+            name="file"
             onChange={handleFileChange}
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
             id="fileInput"
+            required
           />
         </section>
-
-
 
 
         <div className="mt-8 flex justify-center">

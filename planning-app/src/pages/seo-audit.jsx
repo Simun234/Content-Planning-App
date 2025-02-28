@@ -19,7 +19,8 @@ const SeoForm = () => {
     comments: "",
   });
 
-  const [submitted, setSubmitted] = useState(false); 
+  const [submitted, setSubmitted] = useState(false);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +29,7 @@ const SeoForm = () => {
       [name]: value,
     });
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,15 +44,15 @@ const SeoForm = () => {
       </h2>
       <hr className="mb-8" />
 
-
       {submitted ? (
         <div className="text-center">
           <h3 className="text-2xl font-bold text-green-500 mb-4">Thank You!</h3>
           <p>Your submission has been received.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
             <div>
               <label htmlFor="month" className="block text-sm font-medium text-gray-700">
                 Month
@@ -63,20 +65,14 @@ const SeoForm = () => {
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
               >
                 <option>Please Select</option>
-                <option>January</option>
-                <option>February</option>
-                <option>March</option>
-                <option>April</option>
-                <option>May</option>
-                <option>June</option>
-                <option>July</option>
-                <option>August</option>
-                <option>September</option>
-                <option>October</option>
-                <option>November</option>
-                <option>December</option>
+                {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
               </select>
             </div>
+
 
             <div>
               <label htmlFor="channel" className="block text-sm font-medium text-gray-700">
@@ -90,226 +86,68 @@ const SeoForm = () => {
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
               >
                 <option>Please Select</option>
-                <option>Instagram</option>
-                <option>Facebook</option>
-                <option>Twitter</option>
-                <option>Linkedin</option>
-                <option>Bing</option>
-                <option>Youtube</option>
-                <option>Pinterest</option>
+                {["Instagram", "Facebook", "Twitter", "Linkedin", "Bing", "Youtube", "Pinterest"].map((channel) => (
+                  <option key={channel} value={channel}>
+                    {channel}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="totalPosts" className="block text-sm font-medium text-gray-700">
-                Total Number of Posts
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="totalPosts"
-                id="totalPosts"
-                value={formData.totalPosts}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
 
-            <div>
-              <label htmlFor="followersBefore" className="block text-sm font-medium text-gray-700">
-                Followers | Before
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="followersBefore"
-                id="followersBefore"
-                value={formData.followersBefore}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              { label: "Total Number of Posts", name: "totalPosts" },
+              { label: "Followers Before", name: "followersBefore" },
+              { label: "Followers After", name: "followersAfter" },
+              { label: "Engagement", name: "engagement" },
+              { label: "Bio Link Clicks", name: "bioLinkClicks" },
+              { label: "Story Views", name: "storyViews" },
+              { label: "Video Views", name: "videoViews" },
+              { label: "Impressions", name: "impressions" },
+              { label: "Shares", name: "shares" },
+              { label: "Conversions", name: "conversions" },
+              { label: "Clicks", name: "clicks" },
+              { label: "Likes", name: "likes" },
+            ].map(({ label, name }) => (
+              <div key={name}>
+                <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+                  {label}
+                </label>
+                <input
+                  type="number"
+                  name={name}
+                  id={name}
+                  value={formData[name]}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                  placeholder="ex: 23"
+                />
+              </div>
+            ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="followersAfter" className="block text-sm font-medium text-gray-700">
-                Followers | After
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="followersAfter"
-                id="followersAfter"
-                value={formData.followersAfter}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
 
-            <div>
-              <label htmlFor="engagement" className="block text-sm font-medium text-gray-700">
-                Engagement
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="engagement"
-                id="engagement"
-                value={formData.engagement}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="bioLinkClicks" className="block text-sm font-medium text-gray-700">
-                Bio Link Clicks
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="bioLinkClicks"
-                id="bioLinkClicks"
-                value={formData.bioLinkClicks}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="storyViews" className="block text-sm font-medium text-gray-700">
-                Story Views
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="storyViews"
-                id="storyViews"
-                value={formData.storyViews}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="videoViews" className="block text-sm font-medium text-gray-700">
-                Video Views
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="videoViews"
-                id="videoViews"
-                value={formData.videoViews}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="impressions" className="block text-sm font-medium text-gray-700">
-                Impressions
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="impressions"
-                id="impressions"
-                value={formData.impressions}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="shares" className="block text-sm font-medium text-gray-700">
-                Shares
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="shares"
-                id="shares"
-                value={formData.shares}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="conversions" className="block text-sm font-medium text-gray-700">
-                Conversions
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="conversions"
-                id="conversions"
-                value={formData.conversions}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="clicks" className="block text-sm font-medium text-gray-700">
-                Clicks
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="clicks"
-                id="clicks"
-                value={formData.clicks}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="likes" className="block text-sm font-medium text-gray-700">
-                Likes
-              </label>
-              <input
-                type="number"
-                placeholder="ex:23"
-                name="likes"
-                id="likes"
-                value={formData.likes}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label htmlFor="comments" className="block text-sm font-medium text-gray-700">
                 Comments
               </label>
               <textarea
                 name="comments"
-                placeholder="ex:23"
                 id="comments"
                 value={formData.comments}
                 onChange={handleChange}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                placeholder="Optional comments..."
               />
             </div>
           </div>
 
           <hr className="mb-8" />
+
+
           <div className="flex justify-center mt-4">
             <button
               type="submit"

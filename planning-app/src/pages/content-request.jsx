@@ -1,40 +1,55 @@
 import React, { useState } from "react";
 
 function ContentRequest() {
-  const [headline, setHeadline] = useState("");
-  const [subhead, setSubhead] = useState("");
-  const [file, setFile] = useState(null);
+  const [formData, setFormData] = useState({
+    headline: "",
+    subhead: "",
+    file: null,
+    date: "",
+    category: "",
+    socialChannels: [],
+  });
   const [showSuccess, setShowSuccess] = useState(false);
-
   const platforms = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Other"];
 
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+    setFormData({ ...formData, file: event.target.files[0] });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-    const formData = new FormData(event.target);
-    
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        setShowSuccess(true);
-        setHeadline("");
-        setSubhead("");
-        setFile(null);
-        event.target.reset(); 
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    setFormData((prev) => {
+      let socialChannels = [...prev.socialChannels];
+      if (checked) {
+        socialChannels.push(value);
       } else {
-        alert("Success!");
+        socialChannels = socialChannels.filter((item) => item !== value);
       }
-    } catch (error) {
-      alert("Submission failed. Please check your internet connection.");
-    }
+      return { ...prev, socialChannels };
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formData); 
+
+    setShowSuccess(true); 
+    setFormData({ 
+      headline: "",
+      subhead: "",
+      file: null,
+      date: "",
+      category: "",
+      socialChannels: [],
+    });
   };
 
   return (
@@ -42,14 +57,9 @@ function ContentRequest() {
       <form
         onSubmit={handleSubmit}
         className="flex flex-col w-full max-w-3xl bg-[#F4F4F4] p-6 rounded-lg shadow-md"
-        encType="multipart/form-data"
       >
-
-
         <header className="flex justify-center mb-8">
-          <h1 className="font-serif font-bold text-xl text-gray-800">
-            Content Request Form
-          </h1>
+          <h1 className="font-serif font-bold text-xl text-gray-800">Content Request Form</h1>
         </header>
 
         {showSuccess && (
@@ -58,131 +68,83 @@ function ContentRequest() {
           </div>
         )}
 
-        <hr className="mb-8" />
-
-
         <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Author</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex flex-col">
-              <input
-                type="text"
-                name="first_name"
-                placeholder="First Name"
-                className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-              />
-              <label className="mt-2 text-sm text-gray-600">First Name</label>
-            </div>
-            <div className="flex flex-col">
-              <input
-                type="text"
-                name="last_name"
-                placeholder="Last Name"
-                className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-              />
-              <label className="mt-2 text-sm text-gray-600">Last Name</label>
-            </div>
-          </div>
-        </section>
-
-        <hr className="mb-8" />
-
-
-        <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Date</p>
-          <input
-            type="date"
-            name="date"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-          />
-        </section>
-
-        <hr className="mb-8" />
-
-
-        <section className="mb-8">
-          <p className="font-serif text-lg text-gray-800 mb-4">Category</p>
-          <select
-            name="category"
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-          >
-            <option value="">Please Select</option>
-            <option value="Editor's Picks">Editor's Picks</option>
-            <option value="Healthy Life">Healthy Life</option>
-            <option value="Best Places to Visit">Best Places to Visit</option>
-            <option value="Best Recipes">Best Recipes</option>
-            <option value="Where to Eat">Where To Eat</option>
-          </select>
-        </section>
-
-
-        <section className="mb-8">
-          <label htmlFor="headline" className="font-serif text-lg text-gray-800 mb-2 block">
-            Headline
-          </label>
+          <label className="font-serif text-lg text-gray-800 mb-4">Headline</label>
           <textarea
-            id="headline"
             name="headline"
-            value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
+            value={formData.headline}
+            onChange={handleChange}
             rows="2"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
             placeholder="Enter headline"
           />
         </section>
 
-
         <section className="mb-8">
-          <label htmlFor="subhead" className="font-serif text-lg text-gray-800 mb-2 block">
-            Sub-head
-          </label>
+          <label className="font-serif text-lg text-gray-800 mb-4">Sub-head</label>
           <textarea
-            id="subhead"
             name="subhead"
-            value={subhead}
-            onChange={(e) => setSubhead(e.target.value)}
+            value={formData.subhead}
+            onChange={handleChange}
             rows="2"
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
             placeholder="Enter sub-head"
           />
         </section>
 
-
         <section className="mb-8">
-          <label htmlFor="fileInput" className="font-serif text-lg text-gray-800 mb-2 block">
-            Header Image
-          </label>
-          <input
-            type="file"
-            name="header_image"
-            onChange={handleFileChange}
+          <label className="font-serif text-lg text-gray-800 mb-4">Category</label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
             className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            id="fileInput"
-          />
+          >
+            <option value="">Please Select</option>
+            <option value="Editor's Picks">Editor's Picks</option>
+            <option value="Healthy Life">Healthy Life</option>
+            <option value="Best Places to Visit">Best Places to Visit</option>
+          </select>
         </section>
 
-
         <section className="mb-8">
-          <h2 className="font-serif font-bold text-lg text-gray-800 mb-4">Social Channels</h2>
-          <p className="font-serif text-gray-800 mb-4">The content will be shared on:</p>
+          <label className="font-serif text-lg text-gray-800 mb-4">Social Channels</label>
           <div className="space-y-2">
             {platforms.map((platform) => (
               <div key={platform} className="flex items-center">
                 <input
                   type="checkbox"
-                  name="social_channels[]"
                   value={platform}
-                  id={platform}
+                  checked={formData.socialChannels.includes(platform)}
+                  onChange={handleCheckboxChange}
                   className="h-4 w-4 text-lime-600 border-gray-300 rounded focus:ring-lime-500"
                 />
-                <label htmlFor={platform} className="ml-2 text-gray-700">
-                  {platform}
-                </label>
+                <label htmlFor={platform} className="ml-2 text-gray-700">{platform}</label>
               </div>
             ))}
           </div>
         </section>
 
+        <section className="mb-8">
+          <label className="font-serif text-lg text-gray-800 mb-4">Date</label>
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+          />
+        </section>
+
+        <section className="mb-8">
+          <label htmlFor="fileInput" className="font-serif text-lg text-gray-800 mb-4">Header Image</label>
+          <input
+            type="file"
+            name="file"
+            onChange={handleFileChange}
+            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
+          />
+        </section>
 
         <div className="mt-8 flex justify-center">
           <button
