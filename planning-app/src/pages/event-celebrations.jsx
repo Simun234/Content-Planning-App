@@ -6,9 +6,10 @@ const EventCelebrations = () => {
 
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+    const [filter, setFilter] = useState("");
  
 
-  const data = [
+  const tableData = [
     { event: "Easter Sunday", date: "April 12, 2020" },
     { event: "Earth Day", date: "April 22, 2020" },
     { event: "Memorial Day", date: "May 17, 2022" },
@@ -23,6 +24,15 @@ const EventCelebrations = () => {
     { event: "National Freedom Day", date: "February 1, 2023" },
     { event: "Groundhog Day", date: "February 9, 2023" },
   ];
+
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const filteredData = tableData.filter((row) =>
+    row.event.toUpperCase().includes(filter.toUpperCase()) ||
+    row.date.toUpperCase().includes(filter.toUpperCase()) 
+  );
 
   return (
     <>
@@ -74,6 +84,21 @@ const EventCelebrations = () => {
                           )}
               </header>
             </div>
+            
+      <div className="flex justify-center items-center mt-3">
+        <main className="w-[748px] flex items-center gap-2">
+        <input
+            type="text"
+            placeholder="Search"
+            value={filter}
+            onChange={handleSearchChange}
+            className="flex-1 h-12 border border-[#C6C9D7] rounded p-2 text-[#A1A7B3] focus:outline-none focus:ring-2 focus:ring-[#9C4DD3]"
+          />
+
+         
+        </main>
+      </div>
+
     <div className="overflow-x-auto p-4">
       <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
         <thead>
@@ -83,10 +108,10 @@ const EventCelebrations = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {filteredData.map((row, index) => (
             <tr key={index} className="border-b hover:bg-gray-100">
-              <td className="py-2 px-4">{item.event}</td>
-              <td className="py-2 px-4">{item.date}</td>
+              <td className="py-2 px-4">{row.event}</td>
+              <td className="py-2 px-4">{row.date}</td>
             </tr>
           ))}
         </tbody>

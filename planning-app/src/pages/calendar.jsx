@@ -4,9 +4,10 @@ import { Menu, Table, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Calendar = () => {
   const navigate = useNavigate();
-
+  
   const [currentDate, setCurrentDate] = useState(new Date());
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filter, setFilter] = useState(""); 
 
   const goToPreviousMonth = () => {
     setCurrentDate((prevDate) => {
@@ -27,24 +28,27 @@ const Calendar = () => {
   const month = currentDate.toLocaleString("default", { month: "long" });
   const year = currentDate.getFullYear();
 
-
   const getDaysInMonth = (date) => {
     const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const days = [];
-    
-
     for (let i = 1; i <= endOfMonth.getDate(); i++) {
       days.push(i);
     }
-
     return days;
   };
 
-
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-
   const days = getDaysInMonth(currentDate);
+
+
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+
+  const filteredDays = days.filter((day) => {
+    return day.toString().includes(filter);
+  });
 
   return (
     <>
@@ -70,33 +74,41 @@ const Calendar = () => {
               <Table className="w-5 h-5" /> Calendar
             </button>
           </div>
-          <Menu 
-                                  className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8" 
-                                  onClick={() => setMenuOpen(!menuOpen)} 
-                                />
-         
-                     {menuOpen && (
-                     <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
-                       <button 
-                         className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
-                         onClick={() => { navigate("/email-calendar"); setMenuOpen(false); }}
-                       >
-                         Tracking
-                       </button>
-                       <button 
-                         className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
-                         onClick={() => { navigate("/email-content"); setMenuOpen(false); }}
-                       >
-                         Email Content
-                       </button>
-                       <button 
-                         className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
-                         onClick={() => { navigate("/calendar"); setMenuOpen(false); }}
-                       >
-                         Calendar
-                       </button>
-                     </div>
-                   )}
+          <Menu
+            className="w-6 h-6 text-white cursor-pointer mr-2 md:w-8 md:h-8"
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+          {menuOpen && (
+            <div className="absolute top-12 right-2 bg-white shadow-lg rounded-lg w-48">
+              <button
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => {
+                  navigate("/email-calendar");
+                  setMenuOpen(false);
+                }}
+              >
+                Tracking
+              </button>
+              <button
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => {
+                  navigate("/email-content");
+                  setMenuOpen(false);
+                }}
+              >
+                Email Content
+              </button>
+              <button
+                className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black"
+                onClick={() => {
+                  navigate("/calendar");
+                  setMenuOpen(false);
+                }}
+              >
+                Calendar
+              </button>
+            </div>
+          )}
         </header>
       </div>
 
@@ -106,10 +118,10 @@ const Calendar = () => {
             type="text"
             placeholder="Search"
             className="flex-1 h-12 border border-[#C6C9D7] rounded p-2 text-[#A1A7B3] focus:outline-none focus:ring-2 focus:ring-[#9C4DD3]"
+            value={filter} 
+            onChange={handleSearchChange} 
           />
-          <button className="w-16 h-12 bg-[#FBFBFE] border border-[#E3E3E9] rounded text-[#8585A9] hover:bg-[#E3E3E9]">
-            Filter
-          </button>
+          
         </main>
       </div>
 
@@ -136,7 +148,7 @@ const Calendar = () => {
         </div>
 
         <div className="grid grid-cols-7 text-center">
-          {days.map((day) => (
+          {filteredDays.map((day) => ( 
             <div
               key={day}
               className={`p-3 m-1 rounded-full ${
