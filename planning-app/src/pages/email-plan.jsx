@@ -14,7 +14,6 @@ function EmailPlan() {
 
   const [showSuccess, setShowSuccess] = useState(false);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -23,7 +22,6 @@ function EmailPlan() {
     });
   };
 
-
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
@@ -31,9 +29,10 @@ function EmailPlan() {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setShowSuccess(true); 
 
     const formDataObj = new FormData();
     Object.keys(formData).forEach((key) => {
@@ -41,30 +40,25 @@ function EmailPlan() {
     });
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formDataObj,
       });
-
-      if (response.ok) {
-        setShowSuccess(true);
-        setFormData({
-          email: "",
-          target: "",
-          date: "",
-          category: "",
-          status: "",
-          headline: "",
-          subhead: "",
-          file: null,
-        });
-        e.target.reset();
-      } else {
-        alert("Submission failed. Please try again.");
-      }
     } catch (error) {
-      alert("Submission failed. Please check your internet connection.");
+      console.error("Submission error:", error);
     }
+
+    setFormData({
+      email: "",
+      target: "",
+      date: "",
+      category: "",
+      status: "",
+      headline: "",
+      subhead: "",
+      file: null,
+    });
+    e.target.reset();
   };
 
   return (
@@ -87,7 +81,6 @@ function EmailPlan() {
         )}
 
         <hr className="mb-8" />
-
 
         <section className="mb-8">
           <p className="font-serif text-lg text-gray-800 mb-4">E-Mail</p>
@@ -117,7 +110,6 @@ function EmailPlan() {
           </div>
         </section>
 
-
         <section className="mb-8">
           <p className="font-serif text-lg text-gray-800 mb-4">Date</p>
           <input
@@ -129,7 +121,6 @@ function EmailPlan() {
             required
           />
         </section>
-
 
         <section className="mb-8">
           <p className="font-serif text-lg text-gray-800 mb-4">Type</p>
@@ -149,7 +140,6 @@ function EmailPlan() {
           </select>
         </section>
 
-
         <section className="mb-8">
           <p className="font-serif text-lg text-gray-800 mb-4">Status</p>
           <select
@@ -168,7 +158,6 @@ function EmailPlan() {
           </select>
         </section>
 
-
         <section className="mb-8">
           <label htmlFor="headline" className="font-serif text-lg text-gray-800 mb-2 block">
             Headline
@@ -185,7 +174,6 @@ function EmailPlan() {
           />
         </section>
 
-
         <section className="mb-8">
           <label htmlFor="subhead" className="font-serif text-lg text-gray-800 mb-2 block">
             Content
@@ -201,22 +189,6 @@ function EmailPlan() {
             required
           />
         </section>
-
-
-        <section className="mb-8">
-          <label htmlFor="fileInput" className="font-serif text-lg text-gray-800 mb-2 block">
-            Images
-          </label>
-          <input
-            type="file"
-            name="file"
-            onChange={handleFileChange}
-            className="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-lime-500"
-            id="fileInput"
-            required
-          />
-        </section>
-
 
         <div className="mt-8 flex justify-center">
           <button
