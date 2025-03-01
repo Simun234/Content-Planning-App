@@ -74,9 +74,7 @@ const Navbar = () => {
 
         <div className="relative" ref={searchRef}>
 
-          <button className="text-black text-2xl" onClick={toggleSearch}>
-            <FiSearch />
-          </button>
+          
 
 
           {searchOpen && (
